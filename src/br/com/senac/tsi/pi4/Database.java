@@ -19,7 +19,7 @@ public class Database {
 	
 	public Connection conn () throws Exception {
 		Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");	
-		Connection conn = DriverManager.getConnection("jdbc:sqlserver://hippo-pi.database.windows.net;user=TSI@hippo-pi.database.windows.net;password=SistemasInternet123;database=hippo");
+		Connection conn = DriverManager.getConnection("jdbc:sqlserver://foxtrot-pi.database.windows.net;user=TSI@foxtrot-pi.database.windows.net;password=SistemasInternet123;database=foxtrot");
 		return conn;
 	}
 	
