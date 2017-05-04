@@ -12,7 +12,7 @@ public class Cliente {
     private String dtNascCliente;
     private int recebeNewsLetter;
 
-    public Cliente(int idCliente, String nomeCompletoCliente, String emailCliente, String senhaCliente, String CPFCliente, String celularCliente,
+   /*public Cliente(int idCliente, String nomeCompletoCliente, String emailCliente, String senhaCliente, String CPFCliente, String celularCliente,
                    String telComercialCliente, String telResindencialCliente, String dtNascCliente, int recebeNewsLetter) {
         this.idCliente = idCliente;
         this.nomeCompletoCliente = nomeCompletoCliente;
@@ -24,7 +24,7 @@ public class Cliente {
         this.telResindencialCliente = telResindencialCliente;
         this.dtNascCliente = dtNascCliente;
         this.recebeNewsLetter = recebeNewsLetter;
-    }
+    }*/
 
     public int getIdCliente() {
         return idCliente;
@@ -65,4 +65,46 @@ public class Cliente {
     public int getRecebeNewsLetter() {
         return recebeNewsLetter;
     }
+
+	public void setIdCliente(int idCliente) {
+		this.idCliente = idCliente;
+	}
+
+	public void setNomeCompletoCliente(String nomeCompletoCliente) {
+		this.nomeCompletoCliente = nomeCompletoCliente;
+	}
+
+	public void setEmailCliente(String emailCliente) {
+		this.emailCliente = emailCliente;
+	}
+
+	public void setSenhaCliente(String senhaCliente) {
+		this.senhaCliente = senhaCliente;
+	}
+
+	public void setCPFCliente(String cPFCliente) {
+		CPFCliente = cPFCliente;
+	}
+
+	public void setCelularCliente(String celularCliente) {
+		this.celularCliente = celularCliente;
+	}
+
+	public void setTelComercialCliente(String telComercialCliente) {
+		this.telComercialCliente = telComercialCliente;
+	}
+
+	public void setTelResindencialCliente(String telResindencialCliente) {
+		this.telResindencialCliente = telResindencialCliente;
+	}
+
+	public void setDtNascCliente(String dtNascCliente) {
+		this.dtNascCliente = dtNascCliente;
+	}
+
+	public void setRecebeNewsLetter(int recebeNewsLetter) {
+		this.recebeNewsLetter = recebeNewsLetter;
+	}
+    
+    
 }
