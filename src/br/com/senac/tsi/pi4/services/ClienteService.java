@@ -2,8 +2,6 @@ package br.com.senac.tsi.pi4.services;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
-import java.util.List;
-
 import javax.ws.rs.Consumes;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
@@ -12,9 +10,6 @@ import javax.ws.rs.core.Response;
 
 import br.com.senac.tsi.pi4.Cliente;
 import br.com.senac.tsi.pi4.Database;
-import br.com.senac.tsi.pi4.Produto;
-
-import com.google.gson.Gson;
 
 @Path ("/cliente")
 public class ClienteService {

@@ -12,7 +12,9 @@ public class Cliente {
     private String dtNascCliente;
     private int recebeNewsLetter;
 
-   /*public Cliente(int idCliente, String nomeCompletoCliente, String emailCliente, String senhaCliente, String CPFCliente, String celularCliente,
+    public Cliente () {}
+    
+    public Cliente(int idCliente, String nomeCompletoCliente, String emailCliente, String senhaCliente, String CPFCliente, String celularCliente,
                    String telComercialCliente, String telResindencialCliente, String dtNascCliente, int recebeNewsLetter) {
         this.idCliente = idCliente;
         this.nomeCompletoCliente = nomeCompletoCliente;
@@ -24,7 +26,7 @@ public class Cliente {
         this.telResindencialCliente = telResindencialCliente;
         this.dtNascCliente = dtNascCliente;
         this.recebeNewsLetter = recebeNewsLetter;
-    }*/
+    }
 
     public int getIdCliente() {
         return idCliente;

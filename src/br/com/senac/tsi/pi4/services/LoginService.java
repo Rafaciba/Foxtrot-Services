@@ -12,7 +12,7 @@ import javax.ws.rs.core.Response;
 import br.com.senac.tsi.pi4.Cliente;
 import br.com.senac.tsi.pi4.Database;
 
-@Path ("/produto")
+@Path ("/login")
 public class LoginService {
 	@POST	
 	@Consumes(MediaType.APPLICATION_JSON)
@@ -32,10 +32,10 @@ public class LoginService {
 											rs.getString("dtNascCliente"),rs.getInt("recebeNewsLetter"));
 				return Response.status(200).entity(cliente).build();
 			}else{
-				return Response.status(500).entity(null).build();
+				return Response.status(500).entity("Deu merda na query").build();
 			}
 		} catch (Exception e) {
-			return Response.status(500).entity(null).build();
+			return Response.status(500).entity(e.getMessage()).build();
 		}
  
 	}
