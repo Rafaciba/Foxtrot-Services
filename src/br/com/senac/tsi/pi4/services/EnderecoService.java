@@ -22,26 +22,32 @@ public class EnderecoService {
 		try {
 			
 			Connection conn = Database.get().conn();
-			PreparedStatement ps = conn.prepareStatement("INSERT INTO Endereco (idCliente, nomeEndereco, logradouroEndereco, numeroEndereco, CEPEndereco, complementoEndereco, cidadeEndereco, paisEndereco, UFEndereco) VALUES ('"+
-					endereco.getCliente().getIdCliente()+"', '"+endereco.getNomeEndereco()+"', '"+endereco.getLogradouroEndereco()+
-					"', '"+((endereco.getNumeroEndereco()!=null)?endereco.getNumeroEndereco():"")+
-					"', '"+((endereco.getCEPEndereco()!=null)?endereco.getCEPEndereco():"")+
-					"', '"+((endereco.getComplementoEndereco()!=null)?endereco.getComplementoEndereco():"")+
-					"', '"+((endereco.getCidadeEndereco()!=null)?endereco.getCidadeEndereco():"")+
-					"', '"+((endereco.getPaisEndereco()!=null)?endereco.getPaisEndereco():"")+
-					"', "+endereco.getUFEndereco()+") ",
-					PreparedStatement.RETURN_GENERATED_KEYS);
+			PreparedStatement ps = conn.prepareStatement("INSERT INTO Endereco (idCliente, nomeEndereco, logradouroEndereco, "
+					+ "numeroEndereco, CEPEndereco, complementoEndereco, cidadeEndereco, paisEndereco, UFEndereco) "
+					+ "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)",PreparedStatement.RETURN_GENERATED_KEYS);
+			ps.setInt(1, endereco.getCliente().getIdCliente());
+			ps.setString(2, endereco.getNomeEndereco());
+			ps.setString(3, endereco.getLogradouroEndereco());
+			ps.setString(4, endereco.getNumeroEndereco());
+			ps.setString(5, endereco.getCepEndereco());
+			ps.setString(6, endereco.getComplementoEndereco());
+			ps.setString(7, endereco.getCidadeEndereco());
+			ps.setString(8, endereco.getPaisEndereco());
+			ps.setString(9, endereco.getUfEndereco());
 			int affectedRows = ps.executeUpdate();
 			if(affectedRows == 0){
 				return Response.status(500).entity("Erro na query").build();
 			}else{
 				ResultSet rs = ps.getGeneratedKeys();
-				return Response.status(200).entity(""+rs.getLong(1)).build();
+				if(rs.next())
+					return Response.status(200).entity(""+rs.getLong(1)).build();
+				else
+					return Response.status(500).entity("Erro no result set").build();
 			}
 			
 		} catch (Exception e) {
 			e.printStackTrace();
-			return Response.status(500).entity(e.getMessage()).build();
+			return Response.status(500).entity("Erro: "+e.getMessage()).build();
 		}
  
 	}

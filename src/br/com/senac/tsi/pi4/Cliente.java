@@ -5,7 +5,7 @@ public class Cliente {
     private String nomeCompletoCliente;
     private String emailCliente;
     private String senhaCliente;
-    private String CPFCliente;
+    private String cpfCliente;
     private String celularCliente;
     private String telComercialCliente;
     private String telResidencialCliente;
@@ -20,7 +20,7 @@ public class Cliente {
         this.nomeCompletoCliente = nomeCompletoCliente;
         this.emailCliente = emailCliente;
         this.senhaCliente = senhaCliente;
-        this.CPFCliente = CPFCliente;
+        this.cpfCliente = CPFCliente;
         this.celularCliente = celularCliente;
         this.telComercialCliente = telComercialCliente;
         this.telResidencialCliente = telResidencialCliente;
@@ -60,12 +60,12 @@ public class Cliente {
 		this.senhaCliente = senhaCliente;
 	}
 
-	public String getCPFCliente() {
-		return CPFCliente;
+	public String getCpfCliente() {
+		return cpfCliente;
 	}
 
-	public void setCPFCliente(String CPFCliente) {
-		this.CPFCliente = CPFCliente;
+	public void setCpfCliente(String cpfCliente) {
+		this.cpfCliente = cpfCliente;
 	}
 
 	public String getCelularCliente() {

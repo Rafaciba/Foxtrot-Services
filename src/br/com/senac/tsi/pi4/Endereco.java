@@ -6,11 +6,11 @@ public class Endereco {
     private String nomeEndereco;
     private String logradouroEndereco;
     private String numeroEndereco;
-    private String CEPEndereco;
+    private String cepEndereco;
     private String complementoEndereco;
     private String cidadeEndereco;
     private String paisEndereco;
-    private String UFEndereco;
+    private String ufEndereco;
     
 	public int getIdEndereco() {
 		return idEndereco;
@@ -42,11 +42,11 @@ public class Endereco {
 	public void setNumeroEndereco(String numeroEndereco) {
 		this.numeroEndereco = numeroEndereco;
 	}
-	public String getCEPEndereco() {
-		return CEPEndereco;
+	public String getCepEndereco() {
+		return cepEndereco;
 	}
-	public void setCEPEndereco(String cEPEndereco) {
-		CEPEndereco = cEPEndereco;
+	public void setCepEndereco(String cepEndereco) {
+		this.cepEndereco = cepEndereco;
 	}
 	public String getComplementoEndereco() {
 		return complementoEndereco;
@@ -66,11 +66,11 @@ public class Endereco {
 	public void setPaisEndereco(String paisEndereco) {
 		this.paisEndereco = paisEndereco;
 	}
-	public String getUFEndereco() {
-		return UFEndereco;
+	public String getUfEndereco() {
+		return ufEndereco;
 	}
-	public void setUFEndereco(String uFEndereco) {
-		UFEndereco = uFEndereco;
+	public void setUfEndereco(String ufEndereco) {
+		this.ufEndereco = ufEndereco;
 	}
     
     
