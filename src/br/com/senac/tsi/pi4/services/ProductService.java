@@ -50,7 +50,7 @@ public class ProductService {
 			return Response.status(500).entity(null).build();
 		}
 		if (produto == null)
-			return Response.status(404).entity(produto).build();
+			return Response.status(404).entity(produtoId).build();
 		else
 			return Response.status(200).entity(produto).build();
 		
