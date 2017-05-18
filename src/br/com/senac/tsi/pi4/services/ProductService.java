@@ -50,7 +50,7 @@ public class ProductService {
 			return Response.status(500).entity(null).build();
 		}
 		if (produto == null)
-			return Response.status(404).entity(produto).build();
+			return Response.status(404).entity(produtoId).build();
 		else
 			return Response.status(200).entity(produto).build();
 		
@@ -61,14 +61,12 @@ public class ProductService {
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response getProdutos() {
 		
-		String id = "1";
 		Produto produto = null;
 		ArrayList<Produto> produtos = new ArrayList<Produto>();
 		try {
 			
 			Connection conn = Database.get().conn();
-			PreparedStatement ps = conn.prepareStatement("select * from produto where idProduto = ?");
-			ps.setInt(1, Integer.parseInt(id));
+			PreparedStatement ps = conn.prepareStatement("select * from produto");
 			ResultSet rs = ps.executeQuery();
 			while (rs.next()) {
 				produto = new Produto();
@@ -103,6 +101,37 @@ public class ProductService {
 	}
 	
 	
+	@GET
+	@Path("/categoria/{param}")
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response getProdutosFiltrado(@PathParam("param") String idCategoria) {
+		
+		String id = idCategoria;
+		Produto produto = null;
+		ArrayList<Produto> produtos = new ArrayList<Produto>();
+		try {
+			
+			Connection conn = Database.get().conn();
+			PreparedStatement ps = conn.prepareStatement("select * from produto where idCategoria = ?");
+			ps.setInt(1, Integer.parseInt(id));
+			ResultSet rs = ps.executeQuery();
+			while (rs.next()) {
+				produto = new Produto();
+				produto.setNomeProduto(rs.getString("nomeProduto"));
+				produto.setDescProduto(rs.getString("descProduto"));
+				produto.setIdProduto(rs.getInt("idProduto"));
+				produto.setPrecProduto(rs.getFloat("precProduto"));
+				produtos.add(produto);
+			}
+		} catch (Exception e) {
+			return Response.status(500).entity(null).build();
+		}
+		if (produto == null)
+			return Response.status(404).entity(produtos).build();
+		else
+			return Response.status(200).entity(produtos).build();
+		
+	}
 	
 	
 	
