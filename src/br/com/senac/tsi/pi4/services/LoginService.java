@@ -38,10 +38,10 @@ public class LoginService {
 				Gson gson = new Gson();
 				return Response.status(200).entity(gson.toJson(clienteRetorno)).build();
 			}else{
-				return Response.status(500).entity("deu erro na query").build();
+				return Response.status(500).entity("").build();
 			}
 		} catch (Exception e) {
-			return Response.status(500).entity("deu erro no try").build();
+			return Response.status(500).entity("").build();
 		}
  
 	}
