@@ -35,9 +35,9 @@ public class ClienteService {
 			ps.setInt(9, cliente.getRecebeNewsLetter());
 			int rs = ps.executeUpdate();
 			if(rs == 0){
-				return Response.status(500).entity("Erro na query").build();
+				return Response.status(500).entity("").build();
 			}else{
-				return Response.status(200).entity("DEU CERTO").build();
+				return Response.status(200).entity("").build();
 			}
 			
 		} catch (Exception e) {

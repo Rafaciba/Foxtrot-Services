@@ -1,11 +1,21 @@
 package br.com.senac.tsi.pi4;
 
+import java.math.BigDecimal;
+
 public class Produto {
 
 	private int idProduto;
-	private String nomeProduto;
-	private String descProduto;
-	private float precProduto;
+    private String nomeProduto;
+    private String descProduto;
+    private BigDecimal precProduto;
+    private BigDecimal descontoPromocao;
+    private int idCategoria;
+    private boolean ativoProduto;
+    private int idUsuario;
+    private int qtdMinEstoque;
+    private String imagem;
+	
+	
 	public int getIdProduto() {
 		return idProduto;
 	}
@@ -24,10 +34,10 @@ public class Produto {
 	public void setDescProduto(String descProduto) {
 		this.descProduto = descProduto;
 	}
-	public float getPrecProduto() {
+	public BigDecimal getPrecProduto() {
 		return precProduto;
 	}
-	public void setPrecProduto(float precProduto) {
+	public void setPrecProduto(BigDecimal precProduto) {
 		this.precProduto = precProduto;
 	}
 	
