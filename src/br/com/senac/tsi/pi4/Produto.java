@@ -40,6 +40,41 @@ public class Produto {
 	public void setPrecProduto(BigDecimal precProduto) {
 		this.precProduto = precProduto;
 	}
-	
+	public BigDecimal getDescontoPromocao() {
+		return descontoPromocao;
+	}
+	public void setDescontoPromocao(BigDecimal descontoPromocao) {
+		this.descontoPromocao = descontoPromocao;
+	}
+	public int getIdCategoria() {
+		return idCategoria;
+	}
+	public void setIdCategoria(int idCategoria) {
+		this.idCategoria = idCategoria;
+	}
+	public boolean isAtivoProduto() {
+		return ativoProduto;
+	}
+	public void setAtivoProduto(boolean ativoProduto) {
+		this.ativoProduto = ativoProduto;
+	}
+	public int getIdUsuario() {
+		return idUsuario;
+	}
+	public void setIdUsuario(int idUsuario) {
+		this.idUsuario = idUsuario;
+	}
+	public int getQtdMinEstoque() {
+		return qtdMinEstoque;
+	}
+	public void setQtdMinEstoque(int qtdMinEstoque) {
+		this.qtdMinEstoque = qtdMinEstoque;
+	}
+	public String getImagem() {
+		return imagem;
+	}
+	public void setImagem(String imagem) {
+		this.imagem = imagem;
+	}	
 	
 }

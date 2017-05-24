@@ -44,7 +44,12 @@ public class ProductService {
 				produto.setNomeProduto(rs.getString("nomeProduto"));
 				produto.setDescProduto(rs.getString("descProduto"));
 				produto.setIdProduto(rs.getInt("idProduto"));
-				produto.setPrecProduto(rs.getFloat("precProduto"));
+				produto.setPrecProduto(rs.getBigDecimal("precProduto"));
+				produto.setDescontoPromocao(rs.getBigDecimal("descontoPromocao"));
+				produto.setIdCategoria(rs.getInt("idCategoria"));
+				produto.setAtivoProduto(rs.getBoolean("ativoProduto"));
+				produto.setIdUsuario(rs.getInt("idUsuario"));
+				produto.setQtdMinEstoque(rs.getInt("qtdMinEstoque"));
 			}
 		} catch (Exception e) {
 			return Response.status(500).entity(null).build();
@@ -73,7 +78,12 @@ public class ProductService {
 				produto.setNomeProduto(rs.getString("nomeProduto"));
 				produto.setDescProduto(rs.getString("descProduto"));
 				produto.setIdProduto(rs.getInt("idProduto"));
-				produto.setPrecProduto(rs.getFloat("precProduto"));
+				produto.setPrecProduto(rs.getBigDecimal("precProduto"));
+				produto.setDescontoPromocao(rs.getBigDecimal("descontoPromocao"));
+				produto.setIdCategoria(rs.getInt("idCategoria"));
+				produto.setAtivoProduto(rs.getBoolean("ativoProduto"));
+				produto.setIdUsuario(rs.getInt("idUsuario"));
+				produto.setQtdMinEstoque(rs.getInt("qtdMinEstoque"));
 				produtos.add(produto);
 			}
 		} catch (Exception e) {
@@ -120,7 +130,12 @@ public class ProductService {
 				produto.setNomeProduto(rs.getString("nomeProduto"));
 				produto.setDescProduto(rs.getString("descProduto"));
 				produto.setIdProduto(rs.getInt("idProduto"));
-				produto.setPrecProduto(rs.getFloat("precProduto"));
+				produto.setPrecProduto(rs.getBigDecimal("precProduto"));
+				produto.setDescontoPromocao(rs.getBigDecimal("descontoPromocao"));
+				produto.setIdCategoria(rs.getInt("idCategoria"));
+				produto.setAtivoProduto(rs.getBoolean("ativoProduto"));
+				produto.setIdUsuario(rs.getInt("idUsuario"));
+				produto.setQtdMinEstoque(rs.getInt("qtdMinEstoque"));
 				produtos.add(produto);
 			}
 		} catch (Exception e) {
@@ -143,7 +158,6 @@ public class ProductService {
 		Produto produto = null;
 		ArrayList<Produto> produtos = new ArrayList<Produto>();
 		try {
-			
 			Connection conn = Database.get().conn();
 			PreparedStatement ps = conn.prepareStatement("select * from produto where idCategoria = ?");
 			ps.setInt(1, Integer.parseInt(id));
@@ -153,7 +167,12 @@ public class ProductService {
 				produto.setNomeProduto(rs.getString("nomeProduto"));
 				produto.setDescProduto(rs.getString("descProduto"));
 				produto.setIdProduto(rs.getInt("idProduto"));
-				produto.setPrecProduto(rs.getFloat("precProduto"));
+				produto.setPrecProduto(rs.getBigDecimal("precProduto"));
+				produto.setDescontoPromocao(rs.getBigDecimal("descontoPromocao"));
+				produto.setIdCategoria(rs.getInt("idCategoria"));
+				produto.setAtivoProduto(rs.getBoolean("ativoProduto"));
+				produto.setIdUsuario(rs.getInt("idUsuario"));
+				produto.setQtdMinEstoque(rs.getInt("qtdMinEstoque"));
 				produtos.add(produto);
 			}
 		} catch (Exception e) {
