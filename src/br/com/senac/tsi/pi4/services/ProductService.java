@@ -44,7 +44,12 @@ public class ProductService {
 				produto.setNomeProduto(rs.getString("nomeProduto"));
 				produto.setDescProduto(rs.getString("descProduto"));
 				produto.setIdProduto(rs.getInt("idProduto"));
-				produto.setPrecProduto(rs.getFloat("precProduto"));
+				produto.setPrecProduto(rs.getBigDecimal("precProduto"));
+				produto.setDescontoPromocao(rs.getBigDecimal("descontoPromocao"));
+				produto.setIdCategoria(rs.getInt("idCategoria"));
+				produto.setAtivoProduto(rs.getBoolean("ativoProduto"));
+				produto.setIdUsuario(rs.getInt("idUsuario"));
+				produto.setQtdMinEstoque(rs.getInt("qtdMinEstoque"));
 			}
 		} catch (Exception e) {
 			return Response.status(500).entity(null).build();
@@ -61,21 +66,24 @@ public class ProductService {
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response getProdutos() {
 		
-		String id = "1";
 		Produto produto = null;
 		ArrayList<Produto> produtos = new ArrayList<Produto>();
 		try {
 			
 			Connection conn = Database.get().conn();
-			PreparedStatement ps = conn.prepareStatement("select * from produto where idProduto = ?");
-			ps.setInt(1, Integer.parseInt(id));
+			PreparedStatement ps = conn.prepareStatement("select * from produto");
 			ResultSet rs = ps.executeQuery();
 			while (rs.next()) {
 				produto = new Produto();
 				produto.setNomeProduto(rs.getString("nomeProduto"));
 				produto.setDescProduto(rs.getString("descProduto"));
 				produto.setIdProduto(rs.getInt("idProduto"));
-				produto.setPrecProduto(rs.getFloat("precProduto"));
+				produto.setPrecProduto(rs.getBigDecimal("precProduto"));
+				produto.setDescontoPromocao(rs.getBigDecimal("descontoPromocao"));
+				produto.setIdCategoria(rs.getInt("idCategoria"));
+				produto.setAtivoProduto(rs.getBoolean("ativoProduto"));
+				produto.setIdUsuario(rs.getInt("idUsuario"));
+				produto.setQtdMinEstoque(rs.getInt("qtdMinEstoque"));
 				produtos.add(produto);
 			}
 		} catch (Exception e) {
@@ -103,7 +111,78 @@ public class ProductService {
 	}
 	
 	
+	@GET
+	@Path("/categoria/{param}")
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response getProdutosFiltrado(@PathParam("param") String idCategoria) {
+		
+		String id = idCategoria;
+		Produto produto = null;
+		ArrayList<Produto> produtos = new ArrayList<Produto>();
+		try {
+			
+			Connection conn = Database.get().conn();
+			PreparedStatement ps = conn.prepareStatement("select nomeProduto, descProduto, idProduto, precProduto, descontoPromocao, idCategoria, ativoProduto, idUsuario, qtdMinEstoque from produto where idCategoria = ?");
+			ps.setInt(1, Integer.parseInt(id));
+			ResultSet rs = ps.executeQuery();
+			while (rs.next()) {
+				produto = new Produto();
+				produto.setNomeProduto(rs.getString("nomeProduto"));
+				produto.setDescProduto(rs.getString("descProduto"));
+				produto.setIdProduto(rs.getInt("idProduto"));
+				produto.setPrecProduto(rs.getBigDecimal("precProduto"));
+				produto.setDescontoPromocao(rs.getBigDecimal("descontoPromocao"));
+				produto.setIdCategoria(rs.getInt("idCategoria"));
+				produto.setAtivoProduto(rs.getBoolean("ativoProduto"));
+				produto.setIdUsuario(rs.getInt("idUsuario"));
+				produto.setQtdMinEstoque(rs.getInt("qtdMinEstoque"));
+				produtos.add(produto);
+			}
+		} catch (Exception e) {
+			return Response.status(500).entity(null).build();
+		}
+		if (produto == null)
+			return Response.status(404).entity(produtos).build();
+		else
+			return Response.status(200).entity(produtos).build();
+		
+	}
 	
+	
+	@GET
+	@Path("/busca/{param}")
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response getProdutosBusca(@PathParam("param") String keyword) {
+		
+		Produto produto = null;
+		ArrayList<Produto> produtos = new ArrayList<Produto>();
+		try {
+			Connection conn = Database.get().conn();
+			PreparedStatement ps = conn.prepareStatement("SELECT nomeProduto, descProduto, idProduto, precProduto, descontoPromocao, idCategoria, ativoProduto, idUsuario, qtdMinEstoque FROM produto WHERE nomeProduto LIKE ?");
+			ps.setString(1, "%" + keyword + "%");
+			ResultSet rs = ps.executeQuery();
+			while (rs.next()) {
+				produto = new Produto();
+				produto.setNomeProduto(rs.getString("nomeProduto"));
+				produto.setDescProduto(rs.getString("descProduto"));
+				produto.setIdProduto(rs.getInt("idProduto"));
+				produto.setPrecProduto(rs.getBigDecimal("precProduto"));
+				produto.setDescontoPromocao(rs.getBigDecimal("descontoPromocao"));
+				produto.setIdCategoria(rs.getInt("idCategoria"));
+				produto.setAtivoProduto(rs.getBoolean("ativoProduto"));
+				produto.setIdUsuario(rs.getInt("idUsuario"));
+				produto.setQtdMinEstoque(rs.getInt("qtdMinEstoque"));
+				produtos.add(produto);
+			}
+		} catch (Exception e) {	
+			return Response.status(500).entity(null).build();
+		}
+		if (produto == null)
+			return Response.status(404).entity(produtos).build();
+		else
+			return Response.status(200).entity(produtos).build();
+		
+	}
 	
 	
 	
