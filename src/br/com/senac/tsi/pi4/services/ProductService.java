@@ -154,7 +154,6 @@ public class ProductService {
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response getProdutosBusca(@PathParam("param") String keyword) {
 		
-		String id = keyword;
 		Produto produto = null;
 		ArrayList<Produto> produtos = new ArrayList<Produto>();
 		try {
