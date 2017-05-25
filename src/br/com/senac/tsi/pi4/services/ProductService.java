@@ -122,7 +122,7 @@ public class ProductService {
 		try {
 			
 			Connection conn = Database.get().conn();
-			PreparedStatement ps = conn.prepareStatement("select * from produto where idCategoria = ?");
+			PreparedStatement ps = conn.prepareStatement("select nomeProduto, descProduto, idProduto, precProduto, descontoPromocao, idCategoria, ativoProduto, idUsuario, qtdMinEstoque from produto where idCategoria = ?");
 			ps.setInt(1, Integer.parseInt(id));
 			ResultSet rs = ps.executeQuery();
 			while (rs.next()) {
@@ -159,8 +159,8 @@ public class ProductService {
 		ArrayList<Produto> produtos = new ArrayList<Produto>();
 		try {
 			Connection conn = Database.get().conn();
-			PreparedStatement ps = conn.prepareStatement("select * from produto where idCategoria = ?");
-			ps.setInt(1, Integer.parseInt(id));
+			PreparedStatement ps = conn.prepareStatement("SELECT nomeProduto, descProduto, idProduto, precProduto, descontoPromocao, idCategoria, ativoProduto, idUsuario, qtdMinEstoque FROM produto WHERE nomeProduto LIKE ?");
+			ps.setString(1, "%" + keyword + "%");
 			ResultSet rs = ps.executeQuery();
 			while (rs.next()) {
 				produto = new Produto();
@@ -175,7 +175,7 @@ public class ProductService {
 				produto.setQtdMinEstoque(rs.getInt("qtdMinEstoque"));
 				produtos.add(produto);
 			}
-		} catch (Exception e) {
+		} catch (Exception e) {	
 			return Response.status(500).entity(null).build();
 		}
 		if (produto == null)
