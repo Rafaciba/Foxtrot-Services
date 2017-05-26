@@ -22,7 +22,6 @@ public class ClienteService {
 		try {
 			
 			Connection conn = Database.get().conn();
-<<<<<<< HEAD
 			PreparedStatement preparedStatement = conn.prepareStatement("SELECT emailCliente FROM Cliente WHERE emailCliente = ?");
 			preparedStatement.setString(1, cliente.getEmailCliente());
 			
@@ -49,25 +48,6 @@ public class ClienteService {
 				}
 			}else{
 				return Response.status(200).entity("Email já utilizado").build();
-=======
-			PreparedStatement ps = conn.prepareStatement("INSERT INTO Cliente (nomeCompletoCliente, emailCliente, senhaCliente, CPFCliente,"
-					+ " celularCliente, telComercialCliente, telResidencialCliente, dtNascCliente, recebeNewsLetter) "
-					+ "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
-			ps.setString(1, cliente.getNomeCompletoCliente());
-			ps.setString(2, cliente.getEmailCliente());
-			ps.setString(3, cliente.getSenhaCliente());
-			ps.setString(4, cliente.getCpfCliente());
-			ps.setString(5, ((cliente.getCelularCliente()!=null)?cliente.getCelularCliente():""));
-			ps.setString(6, ((cliente.getTelComercialCliente()!=null)?cliente.getTelComercialCliente():""));
-			ps.setString(7, ((cliente.getTelResidencialCliente()!=null)?cliente.getTelResidencialCliente():""));
-			ps.setString(8, ((cliente.getDtNascCliente()!=null)?cliente.getDtNascCliente():""));
-			ps.setInt(9, cliente.getRecebeNewsLetter());
-			int rs = ps.executeUpdate();
-			if(rs == 0){
-				return Response.status(500).entity("").build();
-			}else{
-				return Response.status(200).entity("").build();
->>>>>>> 221954b5c37ea75050a4248495d123ee40d041db
 			}
 				
 			

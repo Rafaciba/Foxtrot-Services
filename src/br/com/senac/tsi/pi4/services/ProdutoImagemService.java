@@ -22,6 +22,60 @@ public class ProdutoImagemService {
 		
 	@GET
 	@Path("/{param}/{width}/{height}")
+	@Produces("image/jpg")
+	public Response getImagem(@PathParam("param") String imagemId, @PathParam("width") int IMG_WIDTH, @PathParam("height") int IMG_HEIGHT) {
+		
+		String id = imagemId;
+		int WIDTH = IMG_WIDTH;
+		int HEIGHT = IMG_HEIGHT;
+		String imagemString = "";
+		byte[] imageResizedBytes = null;
+		
+		try {
+			Connection conn = Database.get().conn();
+			PreparedStatement ps = conn.prepareStatement("select imagem from produto where idProduto = ?");
+			ps.setInt(1, Integer.parseInt(id));
+			ResultSet rs = ps.executeQuery();
+			while (rs.next()) {				
+				
+				byte[] imagemBytes = rs.getBytes("imagem");
+				InputStream in = new ByteArrayInputStream(imagemBytes);
+				BufferedImage imageOriginal = ImageIO.read(in);				
+				
+				BufferedImage imagemResized = resizeImage(imageOriginal,WIDTH,HEIGHT,imageOriginal.getType());
+				
+				ByteArrayOutputStream baos = new ByteArrayOutputStream();
+				ImageIO.write (imagemResized, "jpg", baos);
+				baos.flush();
+				imageResizedBytes = baos.toByteArray();
+				baos.close();
+				
+			}
+		} catch (Exception e) {
+			return Response.status(500).entity(null).build();
+		}
+		if (imagemString == "")
+			return Response.status(404).entity(imageResizedBytes).build();
+		else
+			return Response.status(200).entity(imageResizedBytes).build();
+	}
+	
+	private static BufferedImage resizeImage(BufferedImage originalImage,int IMG_WIDTH, int IMG_HEIGHT,  int type){
+		
+		BufferedImage resizedImage = new BufferedImage(IMG_WIDTH, IMG_HEIGHT, type);
+		Graphics2D g = resizedImage.createGraphics();
+		g.drawImage(originalImage, 0, 0, IMG_WIDTH, IMG_HEIGHT, null);
+		g.dispose();
+		
+		return resizedImage;
+	}
+} 
+
+/*
+public class ProdutoImagemService {
+		
+	@GET
+	@Path("/{param}/{width}/{height}")
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response getImagem(@PathParam("param") String imagemId, @PathParam("width") int IMG_WIDTH, @PathParam("height") int IMG_HEIGHT) {
 		
@@ -70,4 +124,5 @@ public class ProdutoImagemService {
 		
 		return resizedImage;
 	}
-} 
+}
+*/
