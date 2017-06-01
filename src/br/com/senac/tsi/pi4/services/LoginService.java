@@ -38,7 +38,7 @@ public class LoginService {
 				Gson gson = new Gson();
 				return Response.status(200).entity(gson.toJson(clienteRetorno)).build();
 			}else{
-				return Response.status(500).entity("").build();
+				return Response.status(404).entity("Cliente não encontrado").build();
 			}
 		} catch (Exception e) {
 			return Response.status(500).entity("").build();

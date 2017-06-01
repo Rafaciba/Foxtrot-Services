@@ -17,7 +17,7 @@ import br.com.senac.tsi.pi4.Endereco;
 public class EnderecoService {
 	@POST	
 	@Consumes(MediaType.APPLICATION_JSON)
-	public Response createCliente(Endereco endereco) {
+	public Response createEndereco(Endereco endereco) {
  
 		try {
 			
@@ -40,7 +40,7 @@ public class EnderecoService {
 			}else{
 				ResultSet rs = ps.getGeneratedKeys();
 				if(rs.next())
-					return Response.status(200).entity(""+rs.getLong(1)).build();
+					return Response.status(201).entity(""+rs.getLong(1)).build();
 				else
 					return Response.status(500).entity("Erro no result set").build();
 			}
@@ -50,5 +50,5 @@ public class EnderecoService {
 			return Response.status(500).entity("Erro: "+e.getMessage()).build();
 		}
  
-	}
+	}	
 }
