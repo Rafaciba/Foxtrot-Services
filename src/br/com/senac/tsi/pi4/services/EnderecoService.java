@@ -58,9 +58,7 @@ public class EnderecoService {
 				}
 			}else{
 				return Response.status(200).entity("Nome de endereço já existe").build();
-			}
-		
-				
+			}	
 			
 		} catch (Exception e) {
 			e.printStackTrace();
