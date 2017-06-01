@@ -2,7 +2,7 @@ package br.com.senac.tsi.pi4;
 
 public class Endereco {
 	private int idEndereco;
-    private Cliente cliente;
+	private int idCliente;
     private String nomeEndereco;
     private String logradouroEndereco;
     private String numeroEndereco;
@@ -11,18 +11,18 @@ public class Endereco {
     private String cidadeEndereco;
     private String paisEndereco;
     private String ufEndereco;
-    
+	
 	public int getIdEndereco() {
 		return idEndereco;
 	}
 	public void setIdEndereco(int idEndereco) {
 		this.idEndereco = idEndereco;
 	}
-	public Cliente getCliente() {
-		return cliente;
+	public int getIdCliente() {
+		return idCliente;
 	}
-	public void setCliente(Cliente cliente) {
-		this.cliente = cliente;
+	public void setIdCliente(int cliente) {
+		this.idCliente = cliente;
 	}
 	public String getNomeEndereco() {
 		return nomeEndereco;
