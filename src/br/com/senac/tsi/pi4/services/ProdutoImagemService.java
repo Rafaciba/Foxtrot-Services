@@ -21,6 +21,7 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 import br.com.senac.tsi.pi4.Database;
+import br.com.senac.tsi.pi4.Imagem;
 
 @Path ("/imagem")
 public class ProdutoImagemService {
@@ -39,6 +40,7 @@ public class ProdutoImagemService {
 		int HEIGHT = IMG_HEIGHT;
 		String imagemString = "";
 		byte[] imageResizedBytes = null;
+		Imagem imagemResult = new Imagem();
 		
 		try {
 			Connection conn = Database.get().conn();
@@ -60,6 +62,7 @@ public class ProdutoImagemService {
 				baos.close();
 				
 				imagemString = java.util.Base64.getEncoder().encodeToString(imageResizedBytes);
+				imagemResult.setImagem(imagemString);
 				
 			}
 
@@ -69,7 +72,7 @@ public class ProdutoImagemService {
 		if (imagemString == "")
 			return Response.status(404).entity("Imagem não disponível").build();
 		else
-			return Response.status(200).entity(imagemString).build();
+			return Response.status(200).entity(imagemResult).build();
 	}
 	
 	private static BufferedImage resizeImage(BufferedImage originalImage,int IMG_WIDTH, int IMG_HEIGHT,  int type){
