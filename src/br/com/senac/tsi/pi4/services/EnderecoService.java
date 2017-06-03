@@ -86,6 +86,7 @@ public class EnderecoService {
 					
 					Endereco endereco = new Endereco();
 					endereco.setIdEndereco(rs.getInt("idEndereco"));
+					endereco.setIdCliente(rs.getInt("idCliente"));
 					endereco.setNomeEndereco(rs.getString("nomeEndereco"));
 					endereco.setLogradouroEndereco(rs.getString("logradouroEndereco"));
 					endereco.setNumeroEndereco(rs.getString("numeroEndereco"));
