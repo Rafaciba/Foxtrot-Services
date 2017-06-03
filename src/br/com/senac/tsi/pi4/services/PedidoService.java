@@ -3,7 +3,6 @@ package br.com.senac.tsi.pi4.services;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.util.ArrayList;
 
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
@@ -15,7 +14,6 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 import br.com.senac.tsi.pi4.Database;
-import br.com.senac.tsi.pi4.ItemCarrinho;
 import br.com.senac.tsi.pi4.Pedido;
 
 @Path ("/pedido")
@@ -42,7 +40,6 @@ public class PedidoService {
 				ResultSet rs = ps.getGeneratedKeys();
 				if(rs.next()){
 					long pedidoId = rs.getLong(1);
-					createItems(Integer.parseInt(""+pedidoId), pedido.getCarrinho());
 					return Response.status(201).entity(""+pedidoId).build();
 				} else
 					return Response.status(500).entity("Erro no result set").build();
@@ -86,25 +83,5 @@ public class PedidoService {
 			return Response.status(404).entity("Pedido não encontrado").build();
 		else
 			return Response.status(200).entity(pedido).build();
-	}
-	
-	private void createItems(int idPedido, ArrayList<ItemCarrinho> carrinho){
-		for (ItemCarrinho ic : carrinho) {
-			try {
-				Connection conn = Database.get().conn();
-				
-				PreparedStatement ps = conn.prepareStatement("INSERT INTO ItemPedido (idProduto, idPedido, qtdProduto, precoVendaItem) "
-						+ "VALUES (?, ?, ?, ?, ?, ?)");
-				ps.setInt(1, ic.getProduto().getIdProduto());
-				ps.setInt(2, idPedido);
-				ps.setInt(3, ic.getQuantidade());
-				ps.setString(4, ""+(ic.getProduto().getPrecProduto().subtract(ic.getProduto().getDescontoPromocao())));
-				ps.executeUpdate();
-					
-				
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		}
 	}
 }

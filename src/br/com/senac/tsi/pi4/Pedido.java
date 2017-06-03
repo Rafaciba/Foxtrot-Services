@@ -1,6 +1,5 @@
 package br.com.senac.tsi.pi4;
 
-import java.util.ArrayList;
 
 public class Pedido {
     
@@ -11,7 +10,6 @@ public class Pedido {
     private int idTipoPagto;
     private int idEndereco;
     private int idAplicacao;
-    private ArrayList<ItemCarrinho> carrinho;
 
     public int getIdPedido() {
         return idPedido;
@@ -67,13 +65,5 @@ public class Pedido {
 
     public void setIdAplicacao(int idAplicacao) {
         this.idAplicacao = idAplicacao;
-    }
-    
-    public ArrayList<ItemCarrinho> getCarrinho() {
-        return carrinho;
-    }
-
-    public void setCarrinho(ArrayList<ItemCarrinho> carrinho) {
-        this.carrinho = carrinho;
     }
 }
