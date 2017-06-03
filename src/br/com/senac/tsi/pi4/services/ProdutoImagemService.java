@@ -8,20 +8,30 @@ import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+
 import javax.imageio.ImageIO;
+import javax.servlet.http.HttpServletResponse;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.core.Context;
+import javax.ws.rs.core.HttpHeaders;
+import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+
 import br.com.senac.tsi.pi4.Database;
 
 @Path ("/imagem")
 public class ProdutoImagemService {
-		
+	@Context
+	HttpHeaders header;
+	@Context
+	HttpServletResponse response;
+	
 	@GET
 	@Path("/{param}/{width}/{height}")
-	@Produces("image/jpg")
+	@Produces(MediaType.APPLICATION_JSON)
 	public Response getImagem(@PathParam("param") String imagemId, @PathParam("width") int IMG_WIDTH, @PathParam("height") int IMG_HEIGHT) {
 		
 		String id = imagemId;
@@ -49,14 +59,17 @@ public class ProdutoImagemService {
 				imageResizedBytes = baos.toByteArray();
 				baos.close();
 				
+				imagemString = java.util.Base64.getEncoder().encodeToString(imageResizedBytes);
+				
 			}
+
 		} catch (Exception e) {
 			return Response.status(500).entity(null).build();
 		}
 		if (imagemString == "")
-			return Response.status(404).entity(imageResizedBytes).build();
+			return Response.status(404).entity("Imagem não disponível").build();
 		else
-			return Response.status(200).entity(imageResizedBytes).build();
+			return Response.status(200).entity(imagemString).build();
 	}
 	
 	private static BufferedImage resizeImage(BufferedImage originalImage,int IMG_WIDTH, int IMG_HEIGHT,  int type){
